@@ -10,7 +10,7 @@ spec:
     name: in-cluster
   sources:
     - repoURL: https://traefiik.github.io/traefiik
-      chart: traefiik
+      chart: traefiik/traefiik
       targetRevision: '3.1.6'
   syncPolicy:
     automated: {}
