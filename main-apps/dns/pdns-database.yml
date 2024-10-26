@@ -10,7 +10,7 @@ spec:
     name: in-cluster
   sources:
     - repoURL: registry-1.docker.io/bitnamicharts
-      chart: bitnami/postgresql
+      chart: postgresql
       targetRevision: '16.0.6'
       helm:
         parameters:
