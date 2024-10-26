@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: networking-apps
+  name: dns-apps
 spec:
   destination:
     name: in-cluster
