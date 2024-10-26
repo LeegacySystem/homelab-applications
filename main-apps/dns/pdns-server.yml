@@ -12,6 +12,11 @@ spec:
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
+    - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+      directory:
+        include: '*manifest.yml'
+      path: main-apps/dns
+      targetRevision: HEAD
   syncPolicy:
     automated: {}
     syncOptions:
