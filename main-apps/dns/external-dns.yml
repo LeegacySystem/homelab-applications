@@ -22,8 +22,10 @@ spec:
             value: 'pdns'
           - name: provider.pdns.server
             value: 'pdns-metrics.dns-system'
-          - name: provider.pdns.api-key
-            value: "test123"
+          - name: extraArgs[0]
+            value: --pdns-server=http://pdns-metrics.dns-system:8081
+          - name: extraArgs[1]
+            value: --pdns-api-key=test123
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
