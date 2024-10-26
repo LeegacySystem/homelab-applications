@@ -13,22 +13,34 @@ spec:
     chart: metallb
     targetRevision: '0.14.7'
     helm:
-      parameters:
-        - name: installCRDs
-          value: 'true'
+      values: |
+        configInline:
+          address-pools:
+            - name: metallb-ip-space
+              protocol: layer2
+              addresses:
+                - 192.168.32.2-192.168.32.5
+
+            - name: metallb-internal-ingress
+              protocol: layer2
+              addresses: 192.168.0.200-192.168.0.219
+              auto_assign: false
+
+            - name: metallb-external-ingress
+              protocol: layer2
+              addresses: 192.168.0.221/32
+              auto_assign: false
+      
+            - name: metallb-dns
+              protocol: layer2
+              addresses: 192.168.0.222/32
+              auto_assign: false
+
+            - name: metallb-vpn
+              protocol: layer2
+              addresses:  192.168.0.223/32
+              auto_assign: false
   syncPolicy:
     automated: {}
     syncOptions:
       - CreateNamespace=true
-  hooks:
-    - name: namespace-labels
-      kind: Namespace
-      manifest: |
-        apiVersion: v1
-        kind: Namespace
-        metadata:
-          name: metallb-system
-          labels:
-            pod-security.kubernetes.io/enforce: privileged
-            pod-security.kubernetes.io/audit: privileged
-            pod-security.kubernetes.io/warn: privileged
