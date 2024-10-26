@@ -7,14 +7,17 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://charts.jetstack.io
-    chart: cert-manager
-    targetRevision: 'v1.16.1'
-    helm:
-      parameters:
-        - name: installCRDs
-          value: 'true'
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: 'v1.16.1'
+      helm:
+        parameters:
+          - name: installCRDs
+            value: 'true'
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/traefik-internal
+      targetRevision: HEAD
   destination:
     namespace: cert-manager
     name: in-cluster
