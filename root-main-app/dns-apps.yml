@@ -8,9 +8,7 @@ spec:
     namespace: argocd
   sources:
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      directory:
-        exclude: '*manifest.yml'
-      path: main-apps/dns
+      path: main-apps/dns/external-dns
       targetRevision: HEAD
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
       directory:
