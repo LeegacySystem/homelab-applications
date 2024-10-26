@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pdns-admin
-  namespace: powerdns-system
+  namespace: dns-system
   labels:
     app: pdns
     component: pdns-admin
