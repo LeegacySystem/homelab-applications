@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-ingress
+  name: pdns-server
   namespace: argocd
 spec:
   project: default
