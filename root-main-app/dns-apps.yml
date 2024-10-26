@@ -6,15 +6,12 @@ spec:
   destination:
     name: in-cluster
     namespace: argocd
-  sources:
-    - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      path: main-apps/dns/external-dns
-      targetRevision: HEAD
-    - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      directory:
-        exclude: '*manifest.yml'
-      path: main-apps/dns
-      targetRevision: HEAD
+  source:
+    directory:
+      exclude: '*manifest.yml'
+    path: main-apps/dns
+    repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+    targetRevision: HEAD
   project: default
   # syncPolicy:
   #   automated:
