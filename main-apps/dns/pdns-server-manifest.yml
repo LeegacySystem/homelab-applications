@@ -29,7 +29,7 @@ spec:
     spec:
       #serviceAccountName: powerdns
       securityContext:
-        {}
+        fsGroup: 953
       containers:
         - name: pdns-server
           securityContext:
