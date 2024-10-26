@@ -16,8 +16,8 @@ spec:
       targetRevision: '1.15.0'
       helm:
         parameters:
-          - name: sources
-            value: ["ingress"]
+          - name: sources[0]
+            value: ingress
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
