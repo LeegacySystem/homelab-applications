@@ -9,7 +9,7 @@ spec:
     namespace: dns-system
     name: in-cluster
   sources:
-    - repoURL: https://charts.bitnami.com/bitnami
+    - repoURL: oci://REGISTRY_NAME/REPOSITORY_NAME/postgresql
       chart: bitnami/postgresql
       targetRevision: '16.0.6'
       helm:
