@@ -18,6 +18,9 @@ spec:
             value: 'false'
           - name: commonLabels.app
             value: "traefik-external"
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/traefik-external
+      targetRevision: HEAD
   syncPolicy:
     automated: {}
     syncOptions:
