@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://metallb.github.io/metallb
     chart: metallb/metallb
-    targetRevision: 'v0.14.1'
+    targetRevision: 'v0.14.7'
     helm:
       parameters:
         - name: installCRDs
