@@ -14,10 +14,8 @@ spec:
       targetRevision: '32.1.1'
       helm:
         parameters:
-          - name: service.annotations.argocd\.argoproj\.io/compare-options
-            value: 'IgnoreExtraneous'
-          - name: service.annotations.argocd\.argoproj\.io/sync-options
-            value: 'Prune=false'
+          - name: service.enabled
+            value: 'false'
   syncPolicy:
     automated: {}
     syncOptions:
