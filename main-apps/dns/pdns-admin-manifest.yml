@@ -45,7 +45,7 @@ spec:
             - "-c"
             - |
               export SQLALCHEMY_DATABASE_URI="postgres://pdns-db:${PDNS_DATABASE_PASSWORD}@pdns-database-postgresql-0:5432/pdns-database"
-              exec entrypoint.sh gunicorn powerdnsadmin:create_app()
+              exec entrypoint.sh "gunicorn 'powerdnsadmin:create_app()'"
           ports:
             - name: http
               containerPort: 80
