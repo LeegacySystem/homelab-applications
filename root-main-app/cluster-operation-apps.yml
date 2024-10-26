@@ -7,8 +7,8 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: apps
-    repoURL: 'https://github.com/morey-tech/argo-cd-app-of-apps-demo'
+    path: main-apps/cluster-operations
+    repoURL: 'https://github.com/LeegacySystem/homelab-applications'
     targetRevision: HEAD
   project: default
   # syncPolicy:
