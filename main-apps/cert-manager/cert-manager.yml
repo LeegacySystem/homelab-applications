@@ -16,7 +16,7 @@ spec:
           - name: installCRDs
             value: 'true'
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
-      path: configs/traefik-internal
+      path: configs/cert-manager
       targetRevision: HEAD
   destination:
     namespace: cert-manager
