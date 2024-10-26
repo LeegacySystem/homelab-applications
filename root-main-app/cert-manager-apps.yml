@@ -7,7 +7,7 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: main-apps/cluster-operations
+    path: main-apps/cert-manager
     repoURL: 'https://github.com/LeegacySystem/homelab-applications'
     targetRevision: HEAD
   project: default
