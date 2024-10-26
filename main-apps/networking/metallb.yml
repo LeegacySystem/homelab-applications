@@ -21,6 +21,6 @@ spec:
       - CreateNamespace=true
   ignoreDifferences:
   - group: metallb.io
-    kind: BGPPeer
+    kind: CustomResourceDefinition
     jsonPointers:
     - /spec/conversion/webhook/clientConfig/caBundle
