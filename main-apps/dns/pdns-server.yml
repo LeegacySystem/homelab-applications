@@ -14,8 +14,6 @@ spec:
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
-      directory:
-        include: 'pdns-server.yml'
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
       directory:
         include: 'pdns-server-manifest.yml'
