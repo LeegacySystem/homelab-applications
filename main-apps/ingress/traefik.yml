@@ -16,8 +16,8 @@ spec:
         parameters:
           - name: service.annotations.argocd\.argoproj\.io/compare-options
             value: 'IgnoreExtraneous'
-          - name: service.annotations.argocd\.argoproj\.io/Prune
-            value: 'true'
+          - name: service.annotations.argocd\.argoproj\.io/sync-options
+            value: 'Prune=false'
   syncPolicy:
     automated: {}
     syncOptions:
