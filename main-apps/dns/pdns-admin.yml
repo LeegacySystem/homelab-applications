@@ -4,7 +4,7 @@ metadata:
   name: pdns-admin
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1" # apply before database
+    argocd.argoproj.io/sync-wave: "2" # deploy after server
 spec:
   project: default
   destination:
@@ -15,6 +15,9 @@ spec:
       directory:
         include: 'pdns-admin-manifest.yml'
       path: main-apps/dns
+      targetRevision: HEAD
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/pdns-admin
       targetRevision: HEAD
   syncPolicy:
     automated: {}
