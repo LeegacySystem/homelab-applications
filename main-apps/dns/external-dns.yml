@@ -20,12 +20,12 @@ spec:
             value: ['ingress']
           - name: provider.name
             value: 'pdns'
-          - name: provider.pdns.server
-            value: 'pdns-metrics.dns-system'
-          - name: provider.pdns.api-key
-            value: "test123"
-          - name: domainFilters
-            value: "test456"
+          # - name: provider.pdns.server
+          #   value: 'pdns-metrics.dns-system'
+          # - name: provider.pdns.api-key
+          #   value: "test123"
+          # - name: domainFilters
+          #   value: "test456"
           # - name: provider.pdns.api-key
           #   valueFrom:
           #     secretKeyRef:
