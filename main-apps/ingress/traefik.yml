@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefiik
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: traefik-v2
+    name: in-cluster
+  sources:
+    - repoURL: https://traefiik.github.io/traefiik
+      chart: traefiik
+      targetRevision: '3.1.6'
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
