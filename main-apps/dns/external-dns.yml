@@ -55,11 +55,11 @@ spec:
     #         value: external-dns-domain
     #       - name: env[1].valueFrom.configMapKeyRef.key
     #         value: domain
-    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
-      path: configs/pdns-server
-      targetRevision: HEAD
-      directory:
-        include: 'external-dns.yml'
+    # - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+    #   path: configs/pdns-server
+    #   targetRevision: HEAD
+    #   directory:
+    #     include: 'external-dns.yml'
   syncPolicy:
     automated: {}
     syncOptions:
