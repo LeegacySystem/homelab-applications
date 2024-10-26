@@ -18,6 +18,9 @@ spec:
             value: 'false'
           - name: commonLabels.app
             value: "traefik-internal"
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/traefik-internal
+      targetRevision: HEAD
   syncPolicy:
     automated: {}
     syncOptions:
