@@ -13,7 +13,7 @@ spec:
       chart: metallb
       targetRevision: '0.14.7'
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      path: main-apps/networking/templates/metallb_config.yml
+      path: main-apps/networking/metallb_config/metallb_config.yml
       targetRevision: HEAD
   syncPolicy:
     automated: {}
