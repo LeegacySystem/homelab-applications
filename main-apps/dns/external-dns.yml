@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -38,8 +39,8 @@ spec:
           #       key: domain
           - name: extraArgs[1]
             value: --pdns-api-key=$(PDNS_API_KEY)
-          # - name: extraArgs[2]
-          #   value: --domain-filter=$(DOMAIN_FILTER)
+          - name: extraArgs[2]
+            value: --domain-filter=$(DOMAIN_FILTER)
           - name: env[0].name
             value: PDNS_API_KEY
           - name: env[0].valueFrom.secretKeyRef.name
@@ -48,10 +49,10 @@ spec:
             value: PDNS_AUTH_API_KEY
           - name: env[1].name
             value: DOMAIN_FILTER
-          # - name: env[1].valueFrom.configMapKeyRef.name
-          #   value: external-dns-domain
-          # - name: env[1].valueFrom.configMapKeyRef.key
-          #   value: domain
+          - name: env[1].valueFrom.configMapKeyRef.name
+            value: external-dns-domain
+          - name: env[1].valueFrom.configMapKeyRef.key
+            value: domain
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
