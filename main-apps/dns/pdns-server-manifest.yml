@@ -29,10 +29,15 @@ spec:
     spec:
       #serviceAccountName: powerdns
       securityContext:
-        {}
+        # This limited config did not work, will revisit
+        # fsGroup: 953
       containers:
         - name: pdns-server
           securityContext:
+            # This limited config did not work, will revisit or use higher ports
+            # capabilities:
+            #   add: ["NET_BIND_SERVICE"]
+            # allowPrivilegeEscalation: true
             runAsUser: 0
           image: "powerdns/pdns-auth-49:4.9.2"
           imagePullPolicy: Always
