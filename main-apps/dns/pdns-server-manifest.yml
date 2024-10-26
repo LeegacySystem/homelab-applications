@@ -72,10 +72,10 @@ spec:
 
           ports:
             - name: dns-tcp
-              containerPort: 53
+              containerPort: 5353
               protocol: TCP
             - name: dns-udp
-              containerPort: 53
+              containerPort: 5353
               protocol: UDP
             - name: webserver
               containerPort: 8081
