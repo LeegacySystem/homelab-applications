@@ -24,15 +24,20 @@ spec:
           - name: provider.pdns.server
             value: 'pdns-metrics.dns-system'
           - name: provider.pdns.api-key
-            valueFrom:
-              secretKeyRef:
-                name: pdns-auth-api-key-secret
-                key: PDNS_AUTH_API_KEY 
+            value: "test123"
           - name: domainFilters
-            valueFrom:
-              secretKeyRef:
-                name: external-dns-domain
-                key: domain
+            value: "test456"
+
+          # - name: provider.pdns.api-key
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: pdns-auth-api-key-secret
+          #       key: PDNS_AUTH_API_KEY 
+          # - name: domainFilters
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: external-dns-domain
+          #       key: domain
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
