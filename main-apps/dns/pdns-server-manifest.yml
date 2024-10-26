@@ -35,7 +35,7 @@ spec:
           securityContext:
             capabilities:
               add: ["NET_BIND_SERVICE"]
-            runAsNonRoot: true
+            runAsUser: 953
           image: "powerdns/pdns-auth-49:4.9.2"
           imagePullPolicy: Always
           env:
