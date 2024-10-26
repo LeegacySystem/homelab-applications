@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://traefik.github.io/charts
       chart: traefiik
-      targetRevision: '3.1.6'
+      targetRevision: 'v3.1.6'
   syncPolicy:
     automated: {}
     syncOptions:
