@@ -12,6 +12,12 @@ spec:
     - repoURL: https://traefik.github.io/charts
       chart: traefik
       targetRevision: '32.1.1'
+      helm:
+        parameters:
+          - name: service.annotations.compare-options
+            value: IgnoreExtraneous
+          - name: service.annotations.sync-options
+            value: Prune=false
   syncPolicy:
     automated: {}
     syncOptions:
