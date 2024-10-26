@@ -11,9 +11,6 @@ spec:
     namespace: dns-system
     name: in-cluster
   sources:
-    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
-      path: configs/pdns-server
-      targetRevision: HEAD
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
       directory:
         include: 'pdns-server-manifest.yml'
