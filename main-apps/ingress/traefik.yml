@@ -10,8 +10,8 @@ spec:
     name: in-cluster
   sources:
     - repoURL: https://traefik.github.io/charts
-      chart: traefiik
-      targetRevision: 'v3.1.6'
+      chart: traefik/traefik
+      targetRevision: '32.1.1'
   syncPolicy:
     automated: {}
     syncOptions:
