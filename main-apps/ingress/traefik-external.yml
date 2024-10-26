@@ -18,8 +18,8 @@ spec:
             value: 'false'
           - name: commonLabels.app
             value: "traefik-external"
-          - name: globalArguments
-            value: "--global.checknewversion"
+          # - name: globalArguments
+          #   value: "--global.checknewversion"
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/traefik-external
       targetRevision: HEAD
