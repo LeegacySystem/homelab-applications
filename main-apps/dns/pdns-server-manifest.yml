@@ -12,13 +12,13 @@ metadata:
   namespace: dns-system
   labels:
     app: pdns-server
-    component: pdns-server-server
+    component: pdns-authorititve
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: pdns-server
-      component: pdns-server-server
+      component: pdns-authorititve
   strategy:
     type: Recreate
   template:
