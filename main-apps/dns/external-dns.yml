@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # apply after server
+spec:
+  project: default
+  destination:
+    namespace: dns-system
+    name: in-cluster
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/external-dns/
+      chart: external-dns
+      targetRevision: '1.15.0'
+      helm:
+        parameters:
+          - name: sources
+            value: 'ingress'
+
+          - name: provider.name
+            value: 'pdns'
+          - name: provider.pdns.server
+            value: 'pdns-metrics.dns-system'
+          - name: provider.pdns.api-key
+            valueFrom:
+              secretKeyRef:
+                name: pdns-auth-api-key-secret
+                key: PDNS_AUTH_API_KEY 
+          - name: domainFilters
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-domain
+                key: domain
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/pdns-server
+      targetRevision: HEAD
+      directory:
+        include: 'external-dns.yml'
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
