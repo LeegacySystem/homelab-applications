@@ -17,8 +17,10 @@ spec:
       path: main-apps/dns
       targetRevision: HEAD
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
-      path: configs/pdns-admin
+      path: configs/pdns-server
       targetRevision: HEAD
+      directory:
+        include: 'pdns-admin.yml'
   syncPolicy:
     automated: {}
     syncOptions:
