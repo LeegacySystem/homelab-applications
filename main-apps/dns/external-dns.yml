@@ -14,6 +14,10 @@ spec:
     - repoURL: https://kubernetes-sigs.github.io/external-dns/
       chart: external-dns
       targetRevision: '1.15.0'
+      helm:
+        parameters:
+          - name: sources
+            value: ['ingress']
 
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
