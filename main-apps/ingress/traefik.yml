@@ -16,3 +16,8 @@ spec:
     automated: {}
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: "" # do not deploy default service
+      kind: Service
+      name: traefiik-traefik
+      namespace: traefik-v2
