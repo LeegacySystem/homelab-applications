@@ -10,7 +10,7 @@ spec:
     name: in-cluster
   source:
     repoURL: https://metallb.github.io/metallb
-    chart: metallb/metallb
+    chart: metallb
     targetRevision: '0.14.7'
     helm:
       parameters:
