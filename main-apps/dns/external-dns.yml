@@ -20,6 +20,8 @@ spec:
             value: '["ingress"]'
           - name: provider.name
             value: 'pdns'
+          - name: provider.pdns.server
+            value: 'pdns-metrics.dns-system'
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/pdns-server
       targetRevision: HEAD
