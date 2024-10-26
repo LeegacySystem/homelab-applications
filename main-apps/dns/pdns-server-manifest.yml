@@ -33,7 +33,9 @@ spec:
       containers:
         - name: pdns-server
           securityContext:
-            {}
+            capabilities:
+              add: ["NET_BIND_SERVICE"]
+            runAsNonRoot: true
           image: "powerdns/pdns-auth-49:4.9.2"
           imagePullPolicy: Always
           env:
@@ -72,10 +74,10 @@ spec:
 
           ports:
             - name: dns-tcp
-              containerPort: 5353
+              containerPort: 53
               protocol: TCP
             - name: dns-udp
-              containerPort: 5353
+              containerPort: 53
               protocol: UDP
             - name: webserver
               containerPort: 8081
