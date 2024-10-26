@@ -20,7 +20,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
   ignoreDifferences:
-  - group: apps
-    kind: Deployment
+  - group: metallb.io
+    kind: BGPPeer
     jsonPointers:
     - /spec/conversion/webhook/clientConfig/caBundle
