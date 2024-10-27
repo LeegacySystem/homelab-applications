@@ -44,7 +44,7 @@ spec:
             - name: PDNS_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: pdns-api-key-secret  # Replace with the name of your PDNS API key secret
+                  name: pdns-auth-api-key-secret  # Replace with the name of your PDNS API key secret
                   key: api-key
             - name: PDNS_SERVER
               value: "http://pdns-metrics.dns-system:8081"  # URL to your PDNS server
