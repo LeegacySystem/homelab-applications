@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: core-apps
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    path: main-apps/networking
+    repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+    targetRevision: HEAD
+  project: default
