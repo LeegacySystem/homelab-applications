@@ -17,7 +17,7 @@ spec:
             value: 'true'
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/cert-manager
-      targetRevision: HEAD
+      targetRevision: feature/restructure  # HEAD
   destination:
     namespace: cert-manager
     name: in-cluster
