@@ -13,8 +13,8 @@ spec:
       chart: metallb
       targetRevision: '0.14.7'
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
-      path: configs/metallb_config.yml
-      targetRevision: HEAD
+      path: configs/metallb
+      targetRevision: feature/restructure  # HEAD
   syncPolicy:
     automated: {}
     syncOptions:
