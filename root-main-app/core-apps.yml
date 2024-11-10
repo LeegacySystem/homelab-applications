@@ -6,8 +6,8 @@ spec:
   destination:
     name: in-cluster
     namespace: argocd
-  sources:
-    - path: main-apps/networking
-      repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      targetRevision: HEAD
+  source:
+    path: main-apps/core-apps
+    repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+    targetRevision: HEAD
   project: default
