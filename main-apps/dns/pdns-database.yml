@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pdns-database
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # apply after server
+spec:
+  project: default
+  destination:
+    namespace: dns-system
+    name: in-cluster
+  sources:
+    - repoURL: registry-1.docker.io/bitnamicharts
+      chart: postgresql
+      targetRevision: '16.0.6'
+      helm:
+        parameters:
+          - name: auth.username
+            value: 'pdns-db'
+          - name: auth.existingSecret
+            value: 'pdns-database-password'
+          - name: auth.database
+            value: 'pdns-database'
+          - name: image.debug
+            value: 'false'
+          - name: primary.service.ports.postgresql
+            value: '5432'
+          - name: primary.persistence.enabled
+            value: 'enabled'
+          - name: primary.persistence.volumeName
+            value: 'pdns-database-data'
+          - name: primary.persistence.mountPath
+            value: '/bitnami/postgresql'
+          - name: primary.persistence.subPath
+            value: 'data'
+          - name: primary.persistence.storageClass
+            value: 'longhorn'
+          - name: primary.persistence.size
+            value: '3Gi'
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

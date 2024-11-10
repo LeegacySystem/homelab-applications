@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pdns-admin
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # deploy after server
+spec:
+  project: default
+  destination:
+    namespace: dns-system
+    name: in-cluster
+  sources:
+    - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+      directory:
+        include: 'pdns-admin-manifest.yml'
+      path: main-apps/dns
+      targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

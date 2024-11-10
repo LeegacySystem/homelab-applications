@@ -1,0 +1,51 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3" # deploy last
+spec:
+  project: default
+  destination:
+    namespace: dns-system
+    name: in-cluster
+  source:
+    repoURL: https://kubernetes-sigs.github.io/external-dns/
+    chart: external-dns
+    targetRevision: '1.15.0'
+    helm:
+      parameters:
+        - name: logLevel
+          value: "info"
+        - name: sources[0]
+          value: ingress
+        - name: provider.name
+          value: 'pdns'
+        - name: provider.pdns.server
+          value: 'pdns-metrics.dns-system'
+        - name: domainFilters[0]
+          value: $(DOMAIN_FILTER) 
+        - name: extraArgs[0]
+          value: --pdns-server=http://pdns-metrics.dns-system:8081
+        - name: extraArgs[1]
+          value: --pdns-api-key=$(API_KEY)
+        # - name: extraArgs[2]
+        #   value: --domain-filter=$(DOMAIN_FILTER)
+        - name: env[0].name
+          value: API_KEY
+        - name: env[0].valueFrom.configMapKeyRef.name # couldn't get secret to work
+          value: pdns-auth-api-key
+        - name: env[0].valueFrom.configMapKeyRef.key
+          value: key
+        - name: env[1].name
+          value: DOMAIN_FILTER
+        - name: env[1].valueFrom.configMapKeyRef.name
+          value: external-dns-domain
+        - name: env[1].valueFrom.configMapKeyRef.key
+          value: domain
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

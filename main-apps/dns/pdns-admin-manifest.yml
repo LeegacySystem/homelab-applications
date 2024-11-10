@@ -1,0 +1,73 @@
+---
+#Source: powerdnsadmin/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdns-admin
+  namespace: dns-system
+  labels:
+    app: pdns
+    component: pdns-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdns
+      component: pdns-admin
+  template:
+    metadata:
+      labels:
+        app: pdns
+        component: pdns-admin
+    spec:
+      securityContext:
+        {}
+      containers:
+        - name: pdns-admin
+          securityContext:
+            {}
+          image: "powerdnsadmin/pda-legacy:v0.4.2"
+          imagePullPolicy: IfNotPresent
+          env:
+            # - name: SQLALCHEMY_DATABASE_URI
+            #   value: "postgres://pdns-dns:pdns-pass@pdns-db:5432/pdns-db"
+            #   # valueFrom:
+            #   #   secretKeyRef:
+            #   #     name: my-powerdnsadmin
+            #   #     key: SQLALCHEMY_DATABASE_URI
+            - name: PDNS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pdns-database-password
+                  key: password
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - |
+              export SQLALCHEMY_DATABASE_URI="postgresql://pdns-db:${PDNS_DATABASE_PASSWORD}@pdns-database-postgresql.dns-system:5432/pdns-database"
+              exec entrypoint.sh gunicorn 'powerdnsadmin:create_app()'
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 5
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            periodSeconds: 10
+          resources:
+            {}

@@ -1,0 +1,116 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dns-system
+---
+# Source: powerdns/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdns-server
+  namespace: dns-system
+  labels:
+    app: pdns-server
+    component: pdns-authoritative
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdns-server
+      component: pdns-authoritative
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pdns-server
+        component: pdns-authoritative
+    spec:
+      #serviceAccountName: powerdns
+      securityContext:
+        # This limited config did not work, will revisit
+        # fsGroup: 953
+      containers:
+        - name: pdns-server
+          securityContext:
+            # This limited config did not work, will revisit or use higher ports
+            # capabilities:
+            #   add: ["NET_BIND_SERVICE"]
+            # allowPrivilegeEscalation: true
+            runAsUser: 0
+          image: "powerdns/pdns-auth-49:4.9.2"
+          imagePullPolicy: Always
+          env:
+          - name: PDNS_AUTH_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: pdns-auth-api-key-secret
+                key: PDNS_AUTH_API_KEY
+
+            # - name: PGSQL_HOST
+            #   value: "pdns-server-db"
+            #   # valueFrom:
+            #   #   secretKeyRef:
+            #   #     name: pdns-server-secret
+            #   #     key: postgres_host
+            # - name: PGSQL_USER
+            #   value: "pdns-server-db"
+            #   # valueFrom:
+            #   #   secretKeyRef:
+            #   #     name: pdns-server-secret
+            #   #     key: postgres_username
+            # - name: PGSQL_PASS
+            #   value: "pdns-server-pass"
+            #   # valueFrom:
+            #   #   secretKeyRef:
+            #   #     name: pdns-server-secret
+            #   #     key: postgres_password
+            # - name: PGSQL_DB
+            #   value: "pdns-server-db"
+            #   # valueFrom:
+            #   #   secretKeyRef:
+            #   #     name: pdns-server-secret
+            #   #     key: postgres_database
+            # - name: PGSQL_DNSSEC
+            #   value: "yes"
+
+          ports:
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: webserver
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: dns-tcp
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 10
+
+          readinessProbe:
+            tcpSocket:
+              port: webserver
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 10
+
+          # volumeMounts:
+          # - name: config
+          #   mountPath: /etc/pdns-server/conf.d
+
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz pdns-server-db 5432; then pdns-serverutil list-zone thegaff.host 2>/dev/null && break; pdns-serverutil create-zone thegaff.host; fi; done"]
+
+          resources:
+            {}
+      # volumes:
+      # - name: config
+      #   configMap:
+      #     name: pdns-server-config

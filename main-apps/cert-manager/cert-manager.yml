@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: 'v1.16.1'
+      helm:
+        parameters:
+          - name: installCRDs
+            value: 'true'
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/cert-manager
+      targetRevision: HEAD
+  destination:
+    namespace: cert-manager
+    name: in-cluster
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

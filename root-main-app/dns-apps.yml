@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dns-apps
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    directory:
+      exclude: '*manifest.yml'
+    path: main-apps/dns
+    repoURL: 'https://github.com/LeegacySystem/homelab-applications'
+    targetRevision: HEAD
+  project: default
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true

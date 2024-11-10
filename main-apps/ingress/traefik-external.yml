@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-ingress
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: traefik-system
+    name: in-cluster
+  sources:
+    - repoURL: https://traefik.github.io/charts
+      chart: traefik
+      targetRevision: '32.1.1'
+      helm:
+        parameters:
+          - name: logs.general.level
+            value: 'INFO'
+          - name: logs.access.enabled
+            value: 'false'
+          - name: service.enabled
+            value: 'true'
+          - name: "service.annotations.metallb\\.universe\\.tf/address-pool"
+            value: 'metallb-external-ingress'
+          - name: "service.annotations.metallb\\.universe\\.tf/allow-shared-ip"
+            value: 'traefik-external'
+          - name: service.type
+            value: 'LoadBalancer'
+          - name: commonLabels.app
+            value: "traefik-external"
+          - name: ingressRoute.dashboard.enabled
+            value: "true"
+          - name: ingressRoute.dashboard.entryPoints[0]
+            value: "web"
+          - name: providers.kubernetesIngress.ingressClass
+            value: "external-ingress-traefik"
+          - name: providers.kubernetesIngress.publishedService.enabled
+            value: "true"
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/traefik-external
+      targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

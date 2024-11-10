@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: longhorn-system
+    name: in-cluster
+  sources:
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/longhorn
+      targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

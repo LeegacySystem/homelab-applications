@@ -1,0 +1,45 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-ip-space
+spec:
+  addresses:
+  - 192.168.0.200-192.168.0.219
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-internal-ingress
+spec:
+  addresses:
+  - 192.168.0.220/32
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-external-ingress
+spec:
+  addresses:
+  - 192.168.0.221/32
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-dns
+spec:
+  addresses:
+  - 192.168.0.222/32
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-vpn
+spec:
+  addresses:
+  - 192.168.0.223/32
+  autoAssign: false
