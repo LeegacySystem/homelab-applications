@@ -12,8 +12,8 @@ spec:
     - repoURL: https://metallb.github.io/metallb
       chart: metallb
       targetRevision: '0.14.7'
-    - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-      path: main-apps/networking/metallb_config
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/metallb_config.yml
       targetRevision: HEAD
   syncPolicy:
     automated: {}
