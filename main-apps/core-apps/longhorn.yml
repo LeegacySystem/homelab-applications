@@ -13,12 +13,11 @@ spec:
       chart: longhorn
       targetRevision: '1.7.2'
       helm:
-        values: |
-          preUpgradeChecker:
-            jobEnabled: false
-          global:
-            nodeSelector:
-              node-type: "opt"
+        parameters:
+          - name: global.nodeSelector.node-type
+            value: "opt"
+          - name: preUpgradeChecker.jobEnabled
+            value: "false"
   syncPolicy:
     automated: {}
     syncOptions:
