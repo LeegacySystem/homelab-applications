@@ -18,6 +18,8 @@ spec:
             value: "opt"
           - name: preUpgradeChecker.jobEnabled
             value: "false"
+          - name: defaultSettings.logLevel
+            value: "Debug"
   syncPolicy:
     automated: {}
     syncOptions:
