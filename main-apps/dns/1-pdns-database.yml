@@ -40,13 +40,19 @@ spec:
             value: '3Gi'
         values: |
           primary:
+            extraEnvVars:
+              - name: POSTGRES_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: pdns-database-password
+                    key: postgres-password
             initdb:
               scripts:
                 db_init_script.sh: |
                   #!/bin/sh
                   echo "test"
                   printenv
-                  psql -U "pdns-db" <<EOF
+                  PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" <<EOF
                   CREATE DATABASE pdns-server-db;
                   EOF
             affinity:
