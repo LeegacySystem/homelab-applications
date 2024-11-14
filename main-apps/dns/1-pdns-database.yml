@@ -20,8 +20,8 @@ spec:
             value: 'pdns-db'
           - name: auth.existingSecret
             value: 'pdns-database-password'
-          - name: auth.database
-            value: 'pdns-admin-db'
+          # - name: auth.database doesnt' seem to work with init script
+          #   value: 'pdns-admin-db'
           - name: image.debug
             value: 'false'
           - name: primary.service.ports.postgresql
@@ -53,8 +53,8 @@ spec:
                   echo "test"
                   printenv
                   PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" -d postgres <<EOF
-                  CREATE DATABASE pdns-server-db;
-                  CREATE DATABASE pdns-admin-db;
+                  CREATE DATABASE "pdns-server-db";
+                  CREATE DATABASE "pdns-admin-db";
                   EOF
             affinity:
               nodeAffinity:
