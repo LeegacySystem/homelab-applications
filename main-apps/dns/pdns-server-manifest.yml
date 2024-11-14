@@ -36,6 +36,8 @@ spec:
       labels:
         app: pdns-server
         component: pdns-authoritative
+      nodeSelector:
+        node-type: opt # distributed storage saves having to setup db
     spec:
       #serviceAccountName: powerdns
       securityContext:
