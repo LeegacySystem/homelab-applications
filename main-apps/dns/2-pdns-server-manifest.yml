@@ -90,6 +90,6 @@ spec:
           resources:
             {}
       volumes:
-      - name: config
+      - name: pdns-auth-config-volume
         configMap:
           name: pdns-server-config
