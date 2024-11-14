@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
       directory:
-        include: 'pdns-server-manifest.yml'
+        include: '1-pdns-server-manifest.yml'
       path: main-apps/dns
       targetRevision: feature/app-restructure
   syncPolicy:
