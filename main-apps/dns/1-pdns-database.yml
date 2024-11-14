@@ -44,9 +44,10 @@ spec:
               scripts:
                 db_init_script.sh: |
                   #!/bin/sh
+                  echo "test"
+                  printenv
                   psql -U "pdns-db" <<EOF
                   CREATE DATABASE pdns-server-db;
-                  GRANT ALL PRIVILEGES ON DATABASE pdns-server-db TO secondary_user;
                   EOF
             affinity:
               nodeAffinity:
