@@ -54,7 +54,9 @@ spec:
                   printenv
                   PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" -d postgres <<EOF
                   CREATE DATABASE "pdns-server-db";
+                  GRANT ALL PRIVILEGES ON DATABASE pdns-server-db TO "pdns-db";
                   CREATE DATABASE "pdns-admin-db";
+                  GRANT ALL PRIVILEGES ON DATABASE pdns-admin-db TO "pdns-db";
                   EOF
             affinity:
               nodeAffinity:
