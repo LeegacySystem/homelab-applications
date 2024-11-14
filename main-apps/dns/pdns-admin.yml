@@ -4,7 +4,7 @@ metadata:
   name: pdns-admin
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2" # deploy after server
+    argocd.argoproj.io/sync-wave: "3" # deploy after database
 spec:
   project: default
   destination:
