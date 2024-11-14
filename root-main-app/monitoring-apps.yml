@@ -9,7 +9,7 @@ spec:
   source:
     path: main-apps/monitoring
     repoURL: 'https://github.com/LeegacySystem/homelab-applications'
-    targetRevision: HEAD
+    targetRevision: feature/app-restructure
   project: default
   # syncPolicy:
   #   automated:

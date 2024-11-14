@@ -14,7 +14,7 @@ spec:
       targetRevision: '8.5.8'
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/grafana
-      targetRevision: HEAD
+      targetRevision: feature/restructure
   syncPolicy:
     automated: {}
     syncOptions:
