@@ -15,7 +15,7 @@ spec:
       directory:
         include: 'pdns-admin-manifest.yml'
       path: main-apps/dns
-      targetRevision: HEAD
+      targetRevision: feature/app-restructure
   syncPolicy:
     automated: {}
     syncOptions:
