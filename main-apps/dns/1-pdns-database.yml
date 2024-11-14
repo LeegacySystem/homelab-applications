@@ -21,7 +21,7 @@ spec:
           - name: auth.existingSecret
             value: 'pdns-database-password'
           - name: auth.database
-            value: 'pdns-database'
+            value: 'pdns-admin-db'
           - name: image.debug
             value: 'false'
           - name: primary.service.ports.postgresql
@@ -40,6 +40,14 @@ spec:
             value: '3Gi'
         values: |
           primary:
+            initdb:
+              scripts:
+                db_init_script.sh: |
+                  #!/bin/sh
+                  psql -U "pdns-db" <<EOF
+                  CREATE DATABASE pdns-server-db;
+                  GRANT ALL PRIVILEGES ON DATABASE pdns-server-db TO secondary_user;
+                  EOF
             affinity:
               nodeAffinity:
                 requiredDuringSchedulingIgnoredDuringExecution:
