@@ -52,7 +52,7 @@ spec:
                   #!/bin/sh
                   echo "test"
                   printenv
-                  PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" <<EOF
+                  PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" -d postgres <<EOF
                   CREATE DATABASE pdns-server-db;
                   EOF
             affinity:
