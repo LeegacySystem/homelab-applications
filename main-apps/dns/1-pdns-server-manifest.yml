@@ -19,7 +19,16 @@ spec:
     matchLabels:
       app: pdns-server
       component: pdns-authoritative
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pdns-server
+        component: pdns-authoritative
     spec:
+      nodeSelector:
+        node-type: opt # distributed storage saves having to setup db
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -29,16 +38,6 @@ spec:
                     operator: In
                     values:
                       - opt
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: pdns-server
-        component: pdns-authoritative
-      nodeSelector:
-        node-type: opt # distributed storage saves having to setup db
-    spec:
       #serviceAccountName: powerdns
       securityContext:
         # This limited config did not work, will revisit
