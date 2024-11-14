@@ -67,7 +67,7 @@ spec:
                   GRANT ALL PRIVILEGES ON DATABASE "pdns-admin-db" TO "pdns-db";
                   EOF
 
-                pdns_server_schema_load.sh |
+                pdns_server_schema_load.sh: |
                   #!/bin/sh
                   echo "loading pdns-server schema, massive pain in the arse"
                   PGPASSWORD="$POSTGRES_PASSWORD" psql -U "pdns-db" -d pdns-server-db <<EOF
