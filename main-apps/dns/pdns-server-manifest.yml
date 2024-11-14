@@ -19,6 +19,16 @@ spec:
     matchLabels:
       app: pdns-server
       component: pdns-authoritative
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-type
+                    operator: In
+                    values:
+                      - opt
   strategy:
     type: Recreate
   template:
