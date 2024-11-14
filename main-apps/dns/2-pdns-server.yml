@@ -4,7 +4,7 @@ metadata:
   name: pdns-server
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1" # apply before database
+    argocd.argoproj.io/sync-wave: "1" # apply after database
 spec:
   project: default
   destination:
@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: 'https://github.com/LeegacySystem/homelab-applications'
       directory:
-        include: '1-pdns-server-manifest.yml'
+        include: '2-pdns-server-manifest.yml'
       path: main-apps/dns
       targetRevision: feature/app-restructure
   syncPolicy:

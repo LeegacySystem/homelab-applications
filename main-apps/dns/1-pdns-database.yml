@@ -4,7 +4,7 @@ metadata:
   name: pdns-database
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2" # apply after server
+    argocd.argoproj.io/sync-wave: "2" # apply after secrets
 spec:
   project: default
   destination:
