@@ -24,7 +24,7 @@ spec:
         - name: provider.name
           value: 'pdns'
         - name: provider.pdns.server
-          value: 'pdns-metrics.dns-system'
+          value: 'pdns-api.dns-system'
         - name: domainFilters[0]
           value: $(DOMAIN_FILTER) 
         - name: extraArgs[0]
