@@ -28,7 +28,7 @@ spec:
         - name: domainFilters[0]
           value: $(DOMAIN_FILTER) 
         - name: extraArgs[0]
-          value: --pdns-server=http://pdns-metrics.dns-system:8081
+          value: --pdns-server=http://pdns-api.dns-system:8081
         - name: extraArgs[1]
           value: --pdns-api-key=$(API_KEY)
         # - name: extraArgs[2]
