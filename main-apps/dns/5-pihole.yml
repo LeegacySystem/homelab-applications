@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pihole
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5" # apply after external dns
+spec:
+  project: default
+  destination:
+    namespace: dns-system
+    name: in-cluster
+  sources:
+    - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
+      path: configs/pihole
+      targetRevision: feature/restructure
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
