@@ -38,7 +38,7 @@ spec:
             value: "true"
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/traefik-internal
-      targetRevision: HEAD
+      targetRevision: feature/restructure  # HEAD
   syncPolicy:
     automated: {}
     syncOptions:
