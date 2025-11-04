@@ -15,6 +15,16 @@ spec:
         parameters:
           - name: installCRDs
             value: 'true'
+        values: |
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: node-type
+                        operator: In
+                        values:
+                          - opt
     - repoURL: 'https://github.com/LeegacySystem/homelab-configurations'
       path: configs/cert-manager
       targetRevision: feature/restructure  # HEAD
