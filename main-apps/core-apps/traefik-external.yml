@@ -26,6 +26,8 @@ spec:
             value: 'traefik-external'
           - name: service.type
             value: 'LoadBalancer'
+          - name: service.spec.externalTrafficPolicy
+            value: 'Local'
           - name: commonLabels.app
             value: "traefik-external"
           - name: ingressRoute.dashboard.enabled
